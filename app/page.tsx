@@ -1,12 +1,13 @@
-import HeroSection from "../components/hero-section";
+import ImageSection from "@/components/image-section/image-section";
+import HeroSection from "../components/hero-section/hero-section";
 
 export default function HomePage() {
   return (
     <div className="min-h-screen">
       <main>
         <HeroSection />
-        {/* <AlbumSection />
-        <BandPhotoSection />
+        <ImageSection />
+        {/* <BandPhotoSection />
         <TourDatesSection />
         <VideoSection />
         <JoinSection /> */}
