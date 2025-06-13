@@ -19,7 +19,10 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <section ref={heroRef} className="relative h-[250vh] overflow-hidden">
+    <section
+      ref={heroRef}
+      className="relative h-[120vh] sm:h-[180vh] md:h-[220vh] lg:h-[250vh] overflow-hidden"
+    >
       {/* Background image with parallax effect */}
       <div
         className="absolute inset-0 w-full h-full"
@@ -34,9 +37,9 @@ export default function HeroSection() {
       />
 
       {/* Navigation menu */}
-      <div className="absolute top-0 left-0 right-0 z-20 pt-8">
+      <div className="absolute top-0 left-0 right-0 z-20 pt-6 sm:pt-8">
         <nav className="container mx-auto px-2 sm:px-4">
-          <div className="flex flex-wrap justify-center gap-4 md:gap-16">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-6 md:gap-12 lg:gap-16">
             <Link
               href="/tour"
               className="text-white hover:text-yellow-400 transition-colors font-medium tracking-wider text-base sm:text-lg"
@@ -66,14 +69,14 @@ export default function HeroSection() {
       </div>
 
       {/* Main content container */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-2 sm:px-4 mt-24 sm:mt-32">
+      <div className="absolute inset-0 flex flex-col items-center justify-center px-2 sm:px-4 mt-20 sm:mt-15">
         {/* DOGSTAR Logo with parallax effect */}
         <div
-          className="relative z-10 mb-16 sm:mb-24 mt-16 sm:mt-32"
+          className="relative z-10 mb-10 sm:mb-16 mt-10 sm:mt-20"
           style={{
             transform: `translateY(${scrollY * -0.2}px)`,
             willChange: "transform",
-            opacity: 0.7, // More transparency for the logo
+            opacity: 0.7,
           }}
         >
           <Image
@@ -81,54 +84,53 @@ export default function HeroSection() {
             alt="DOGSTAR"
             width={1200}
             height={400}
-            className="w-full max-w-xs sm:max-w-2xl md:max-w-4xl lg:max-w-6xl h-auto"
+            className="w-full max-w-[450px] xs:max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-6xl h-auto"
             priority
           />
         </div>
 
         {/* Album artwork with parallax effect */}
         <div
-          className="relative z-10 mb-16 sm:mb-24"
+          className="relative z-10 mb-10 sm:mb-16"
           style={{
             transform: `translateY(${scrollY * -0.1}px)`,
             willChange: "transform",
           }}
         >
-          <div className="relative w-full max-w-xs sm:max-w-md md:max-w-xl lg:max-w-2xl">
+          <div className="relative w-full max-w-[320px] xs:max-w-xs sm:max-w-md md:max-w-xl lg:max-w-2xl">
             <Image
               src="/image004.png"
               alt="Somewhere Between The Power Lines And Palm Trees"
               width={600}
               height={300}
-              className="w-full h-auto rounded-lg shadow-2xl"
+              className="w-full h-auto rounded-lg shadow-2xl min-h-[160px] xs:min-h-[180px] sm:min-h-[220px] md:min-h-[260px] lg:min-h-[300px]"
             />
           </div>
         </div>
 
         {/* Album title and content */}
         <div
-          className="relative z-10 text-center max-w-xs sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mb-16 sm:mb-24"
+          className="relative z-10 text-center max-w-[95vw] xs:max-w-xs sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mb-10 sm:mb-16"
           style={{
             transform: `translateY(${scrollY * -0.05}px)`,
             willChange: "transform",
           }}
         >
-          <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-black tracking-wider text-white mb-8 sm:mb-12 leading-tight">
+          <h2 className="text-lg xs:text-xl sm:text-3xl md:text-5xl lg:text-6xl font-black tracking-wider text-white mb-6 sm:mb-10 leading-tight">
             SOMEWHERE BETWEEN THE POWER LINES AND PALM TREES
           </h2>
 
-          <h3 className="text-lg sm:text-2xl md:text-4xl lg:text-5xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500 mb-8 sm:mb-12">
+          <h3 className="text-base xs:text-lg sm:text-2xl md:text-4xl lg:text-5xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500 mb-6 sm:mb-10">
             AVAILABLE NOW
           </h3>
 
           <Button
-            className="w-full sm:w-auto bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold tracking-wider px-10 sm:px-16 py-10 sm:py-12 text-xl sm:text-2xl rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-none"
+            className="w-80 xs:w-auto bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold tracking-wider px-8 xs:px-10 sm:px-16 py-7 xs:py-8 sm:py-10 text-base xs:text-lg sm:text-2xl rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-none"
             style={{
               backgroundImage: "linear-gradient(to right, #facc15, #f97316)",
             }}
             onMouseOver={(e: { currentTarget: HTMLElement }) => {
-              (e.currentTarget as HTMLElement).style.backgroundImage =
-                "none"
+              (e.currentTarget as HTMLElement).style.backgroundImage = "none"
               ;(e.currentTarget as HTMLElement).style.backgroundColor = "#800020"
               ;(e.currentTarget as HTMLElement).style.color = "#fff"
             }}
