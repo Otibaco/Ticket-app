@@ -28,7 +28,7 @@ export default function HeroSection() {
         className="absolute inset-0 w-full h-full"
         style={{
           transform: `translateY(${scrollY * 0.3}px)`,
-          backgroundImage: `url('/image004.png')`,
+          backgroundImage: `url('/bg-cover.jpg')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
