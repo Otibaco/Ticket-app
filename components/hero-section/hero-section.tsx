@@ -18,6 +18,16 @@ export default function HeroSection() {
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId)
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      })
+    }
+  }
+
   return (
     <section
       ref={heroRef}
@@ -40,24 +50,24 @@ export default function HeroSection() {
       <div className="absolute top-0 left-0 right-0 z-20 pt-6 sm:pt-8">
         <nav className="container mx-auto px-2 sm:px-4">
           <div className="flex flex-wrap justify-center gap-3 sm:gap-6 md:gap-12 lg:gap-16">
-            <Link
-              href="/tour"
-              className="text-white hover:text-yellow-400 transition-colors font-medium tracking-wider text-base sm:text-lg"
+            <button
+              onClick={() => scrollToSection("tour")}
+              className="text-white hover:text-yellow-400 transition-colors font-medium tracking-wider text-base sm:text-lg cursor-pointer"
             >
               TOUR
-            </Link>
-            <Link
-              href="/watch"
-              className="text-white hover:text-yellow-400 transition-colors font-medium tracking-wider text-base sm:text-lg"
+            </button>
+            <button
+              onClick={() => scrollToSection("watch")}
+              className="text-white hover:text-yellow-400 transition-colors font-medium tracking-wider text-base sm:text-lg cursor-pointer"
             >
               WATCH
-            </Link>
-            <Link
-              href="/join"
-              className="text-white hover:text-yellow-400 transition-colors font-medium tracking-wider text-base sm:text-lg"
+            </button>
+            <button
+              onClick={() => scrollToSection("join")}
+              className="text-white hover:text-yellow-400 transition-colors font-medium tracking-wider text-base sm:text-lg cursor-pointer"
             >
               JOIN
-            </Link>
+            </button>
             <Link
               href="/shop"
               className="text-white hover:text-yellow-400 transition-colors font-medium tracking-wider text-base sm:text-lg"
@@ -131,14 +141,14 @@ export default function HeroSection() {
             }}
             onMouseOver={(e: { currentTarget: HTMLElement }) => {
               (e.currentTarget as HTMLElement).style.backgroundImage = "none"
-              ;(e.currentTarget as HTMLElement).style.backgroundColor = "#800020"
-              ;(e.currentTarget as HTMLElement).style.color = "#fff"
+                ; (e.currentTarget as HTMLElement).style.backgroundColor = "#800020"
+                ; (e.currentTarget as HTMLElement).style.color = "#fff"
             }}
             onMouseOut={(e: { currentTarget: HTMLElement }) => {
               (e.currentTarget as HTMLElement).style.backgroundImage =
                 "linear-gradient(to right, #facc15, #f97316)"
-              ;(e.currentTarget as HTMLElement).style.backgroundColor = ""
-              ;(e.currentTarget as HTMLElement).style.color = "#000"
+                ; (e.currentTarget as HTMLElement).style.backgroundColor = ""
+                ; (e.currentTarget as HTMLElement).style.color = "#000"
             }}
             variant={undefined}
             size={undefined}

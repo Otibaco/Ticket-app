@@ -31,9 +31,9 @@ export default function VideoSection() {
       {/* Content container */}
       <div className="relative min-h-[80vh] w-full flex flex-col items-center justify-start px-4 py-16 md:py-24 lg:py-32">
         {/* WATCH heading */}
-        <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-500 mb-12 md:mb-16 text-center">
+        {/* <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-500 mb-12 md:mb-16 text-center">
           WATCH
-        </h2>
+        </h2> */}
 
         {/* Videos grid */}
         <div className="w-full max-w-7xl mx-auto grid gap-8 md:gap-12">

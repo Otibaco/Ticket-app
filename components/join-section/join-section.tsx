@@ -22,7 +22,7 @@ export default function JoinSection() {
             <div
                 className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
                 style={{
-                    backgroundImage: "url('/bg2.jpg')",
+                    backgroundImage: "url('/bg3.jpg')",
                 }}
             />
 
