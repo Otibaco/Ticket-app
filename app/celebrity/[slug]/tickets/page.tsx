@@ -1,7 +1,6 @@
 "use client"
 
-import type React from "react"
-
+import { use } from "react"
 import { useState } from "react"
 import Link from "next/link"
 import { ArrowLeft, X } from "lucide-react"
@@ -10,12 +9,13 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 
 interface PageProps {
-    params: {
-        slug: string
-    }
+    params: Promise<{ slug: string }>
 }
 
 export default function TicketsPage({ params }: PageProps) {
+    // Unwrap params Promise for Next.js 14+
+    const { slug } = use(params)
+
     const [showBookingModal, setShowBookingModal] = useState(false)
     const [selectedTicketType, setSelectedTicketType] = useState<"regular" | "vip" | "private-regular" | "private-vip">(
         "regular",
@@ -26,7 +26,7 @@ export default function TicketsPage({ params }: PageProps) {
         paymentMethod: "cash-app",
     })
 
-    const celebrity = celebrities.find((c) => c.slug === params.slug)
+    const celebrity = celebrities.find((c) => c.slug === slug)
 
     if (!celebrity) {
         return (

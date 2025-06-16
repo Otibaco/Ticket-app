@@ -1,17 +1,19 @@
 "use client"
+import { use } from "react"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { celebrities } from "@/lib/celebrities"
 import { Button } from "@/components/ui/button"
 
 interface PageProps {
-  params: {
-    slug: string
-  }
+  params: Promise<{ slug: string }>
 }
 
 export default function CelebrityProfilePage({ params }: PageProps) {
-  const celebrity = celebrities.find((c) => c.slug === params.slug)
+  // Unwrap the params Promise for Next.js 14+
+  const { slug } = use(params)
+
+  const celebrity = celebrities.find((c) => c.slug === slug)
 
   if (!celebrity) {
     return (
