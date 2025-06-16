@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
+import TicketDropdown from "../ticket-dropdown/ticket-dropdown"
 
 export default function HeroSection() {
   const [scrollY, setScrollY] = useState(0)
@@ -68,12 +69,7 @@ export default function HeroSection() {
             >
               JOIN
             </button>
-            <Link
-              href="/shop"
-              className="text-white hover:text-yellow-400 transition-colors font-medium tracking-wider text-base sm:text-lg"
-            >
-              SHOP
-            </Link>
+            <TicketDropdown />
           </div>
         </nav>
       </div>
