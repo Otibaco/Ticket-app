@@ -1,6 +1,8 @@
+"use client"
 import Link from "next/link"
-import { ArrowLeft } from "lucide-react"
+import { ArrowLeft, LogOut } from "lucide-react"
 import { celebrities } from "@/lib/celebrities"
+import { signOut } from "next-auth/react"
 
 export default function CelebrityPage() {
   return (
@@ -13,9 +15,19 @@ export default function CelebrityPage() {
               <ArrowLeft className="w-5 h-5" />
               <span className="font-medium">Back to Home</span>
             </Link>
-            <h1 className="text-2xl md:text-4xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-500">
-              CELEBRITIES
-            </h1>
+            <div className="flex items-center gap-4">
+              <h1 className="text-2xl md:text-4xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-500">
+                CELEBRITIES
+              </h1>
+              <button
+                onClick={() => signOut({ callbackUrl: "/sign-in" })}
+                className="flex items-center gap-1 px-4 py-2 rounded-lg bg-gradient-to-b from-yellow-300 to-yellow-500 text-black font-bold hover:from-yellow-400 hover:to-orange-400 transition-all"
+                title="Sign out"
+              >
+                <LogOut className="w-5 h-5" />
+                <span className="hidden sm:inline">Sign out</span>
+              </button>
+            </div>
           </div>
         </div>
       </header>

@@ -24,7 +24,7 @@ export default function TicketDropdown() {
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center space-x-1 text-white hover:text-yellow-400 transition-colors font-medium tracking-wider text-base sm:text-lg"
+        className="flex items-center space-x-1 text-white hover:text-yellow-400 transition-colors font-bold tracking-wider text-base sm:text-lg"
       >
         <span>BUY TICKET</span>
         <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} />
