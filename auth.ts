@@ -6,7 +6,7 @@ import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import { connectToDB } from "./lib/connectDB";
 import { JWT } from "next-auth/jwt";
-import User from "@/models/User"; // Make sure this is a properly typed Mongoose model
+import User from "@/models/User"; 
 // Extend the default Session user type to include id, username, and role
 declare module "next-auth" {
   interface Session {
@@ -114,7 +114,7 @@ export const authOptions: AuthOptions = {
     // Redirect user after login based on role
     async redirect({ url, baseUrl, token }: { url: string; baseUrl: string; token?: JWT }) {
       if (token?.role === "admin") return "/admin";
-      if (token?.role === "user") return "/dashboard";
+      if (token?.role === "user") return "/celebrity";
       return baseUrl;
     },
   },

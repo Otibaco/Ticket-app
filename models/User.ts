@@ -1,23 +1,23 @@
+// models/User.ts
+
 import mongoose, { Document, Model, Schema } from "mongoose";
 
-// Define the TypeScript interface for a User document
+// 1. Define TypeScript interface
 export interface IUser extends Document {
   userID: string;
   username: string;
-  firstName?: string;
-  lastName?: string;
   email: string;
   password: string;
   profilePicture?: string | null;
   joinDate?: Date | null;
   lastLogin?: Date | null;
-  role: "user" | "superAdmin" | "admin" | "writer" | "editor";
+  role: "user" | "admin";
   status: "active" | "inactive";
   createdAt?: Date;
   updatedAt?: Date;
 }
 
-// Define the Mongoose schema
+// 2. Define Mongoose Schema
 const UserSchema: Schema<IUser> = new Schema(
   {
     userID: {
@@ -27,12 +27,6 @@ const UserSchema: Schema<IUser> = new Schema(
     username: {
       type: String,
       required: true,
-    },
-    firstName: {
-      type: String,
-    },
-    lastName: {
-      type: String,
     },
     email: {
       type: String,
@@ -47,7 +41,7 @@ const UserSchema: Schema<IUser> = new Schema(
       type: String,
       required: [true, "Password is required"],
       minlength: [6, "Password must be at least 6 characters"],
-      select: false,
+      select: false, // Hide by default when querying
     },
     profilePicture: {
       type: String,
@@ -63,7 +57,7 @@ const UserSchema: Schema<IUser> = new Schema(
     },
     role: {
       type: String,
-      enum: ["user", "superAdmin", "admin", "writer", "editor"],
+      enum: ["user", "admin"], // 🔥 limited to only what you're using
       default: "user",
     },
     status: {
@@ -73,10 +67,10 @@ const UserSchema: Schema<IUser> = new Schema(
     },
   },
   {
-    timestamps: true,
+    timestamps: true, // Adds createdAt and updatedAt automatically
   }
 );
 
-// Export the model with proper type
+// 3. Export Mongoose model
 const User: Model<IUser> = mongoose.models.User || mongoose.model<IUser>("User", UserSchema);
 export default User;

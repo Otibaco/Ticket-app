@@ -9,7 +9,7 @@ export async function middleware(req: NextRequest) {
 
   const { pathname } = req.nextUrl;
 
-  // Allow access to public paths
+  // ✅ Allow access to public paths
   if (
     pathname.startsWith("/sign-in") ||
     pathname === "/"
@@ -17,24 +17,25 @@ export async function middleware(req: NextRequest) {
     return NextResponse.next();
   }
 
-  // Redirect if no token (not authenticated)
+  // ❌ If not authenticated → redirect to login
   if (!token) {
     return NextResponse.redirect(new URL("/sign-in", req.url));
   }
 
-  // Role-based route restrictions
+  // ✅ Admin route protection
   if (pathname.startsWith("/admin") && token.role !== "admin") {
-    return NextResponse.redirect(new URL("/admindashboard", req.url));
+    return NextResponse.redirect(new URL("/not-authorized", req.url)); // or a 403 page
   }
 
-  if (pathname.startsWith("") && token.role !== "user") {
-    return NextResponse.redirect(new URL(`/celebrity/${token.slug}`, req.url));
+  // ✅ User route protection
+  if (pathname.startsWith("/celebrity") && token.role !== "user") {
+    return NextResponse.redirect(new URL("/not-authorized", req.url));
   }
 
   return NextResponse.next();
 }
 
-// Configure the matcher for routes that require this middleware
+// ✅ Apply middleware to specific paths
 export const config = {
-  matcher: ["/admin/:path*", "/dashboard/:path*"],
+  matcher: ["/admin/:path*", "/celebrity/:path*"], // match user and admin areas
 };

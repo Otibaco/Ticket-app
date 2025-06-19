@@ -43,15 +43,15 @@ export default function AuthDropdown() {
             onClick={() => setIsOpen(false)}
             className="block px-4 py-3 text-white hover:bg-yellow-400/10 hover:text-yellow-400 transition-colors duration-200"
           >
-            Login
+            Get Started
           </Link>
-          <Link
+          {/* <Link
             href="/register"
             onClick={() => setIsOpen(false)}
             className="block px-4 py-3 text-white hover:bg-yellow-400/10 hover:text-yellow-400 transition-colors duration-200"
           >
             Register
-          </Link>
+          </Link> */}
         </div>
       </div>
     </div>

@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, ChangeEvent, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -10,6 +11,7 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { signIn } from "next-auth/react";
 
 interface LoginData {
   email: string;
@@ -36,44 +38,43 @@ const Signin = () => {
   const [error, setError] = useState("");
   const router = useRouter();
 
-  // Login handler
+  // ✅ Login handler
+  // Login handler using next-auth signIn
   async function handleLoginSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setIsLoading(true);
     setError("");
-    try {
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(loginData),
-      });
-      const data = await res.json();
-      setIsLoading(false);
 
-      if (!res.ok) {
-        setError(data.error || "Login failed.");
-        toast.error(data.error || "Login failed.");
-        return;
-      }
+    const res = await signIn("credentials", {
+      redirect: false,
+      email: loginData.email,
+      password: loginData.password,
+    });
 
+    setIsLoading(false);
+
+    if (res?.error) {
+      setError(res.error);
+      toast.error(res.error || "Login failed.");
+    } else {
       toast.success("Login successful!");
-      router.push("/dashboard");
-    } catch (err) {
-      setIsLoading(false);
-      setError("Login failed.");
-      toast.error("Login failed.");
+      router.push("/celebrity");
     }
   }
 
-  // Register handler
+
+  // ✅ Register handler
   async function handleRegisterSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError("");
+
+    // ✅ Frontend confirm password check
     if (registerData.password !== registerData.confirmPassword) {
       setError("Passwords do not match.");
       toast.error("Passwords do not match.");
       return;
     }
+
     setIsLoading(true);
 
     try {
@@ -81,9 +82,10 @@ const Signin = () => {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name: registerData.name,
+          username: registerData.name, // ✅ match backend expected name
           email: registerData.email,
           password: registerData.password,
+          confirmPassword: registerData.confirmPassword,
         }),
       });
 
@@ -97,14 +99,10 @@ const Signin = () => {
       }
 
       toast.success("Registration successful! You can now log in.");
-      setRegisterData({
-        name: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-      });
+
+      // ✅ Reset fields
+      setRegisterData({ name: "", email: "", password: "", confirmPassword: "" });
     } catch (err) {
-      setError("Registration failed.");
       toast.error("Registration failed.");
       setIsLoading(false);
     }
@@ -119,7 +117,7 @@ const Signin = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="w-full"
         >
-          {/* Mobile Header */}
+          {/* Branding */}
           <div className="text-center mb-8">
             <div className="flex justify-center mb-4">
               <div className="w-16 h-16 bg-gradient-to-b from-yellow-300 to-yellow-500 rounded-2xl flex items-center justify-center shadow-xl">
@@ -129,24 +127,16 @@ const Signin = () => {
             <h1 className="text-3xl font-bold bg-gradient-to-b from-yellow-300 to-yellow-500 bg-clip-text text-transparent">
               DOGSTAR
             </h1>
-            {/* <p className="text-slate-600">Digital Banking Revolution</p> */}
           </div>
 
           <Card className="border-none shadow-2xl bg-white/80 backdrop-blur-xl">
             <Tabs defaultValue="login" className={undefined}>
               <CardHeader className="space-y-4">
                 <TabsList className="grid grid-cols-2 w-full bg-sky-50 border border-sky-100">
-                  <TabsTrigger
-                    id="login-tab"
-                    value="login"
-                    className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-yellow-500 data-[state=active]:to-yellow-600 data-[state=active]:text-white"
-                  >
+                  <TabsTrigger value="login" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-yellow-500 data-[state=active]:to-yellow-600 data-[state=active]:text-white">
                     Login
                   </TabsTrigger>
-                  <TabsTrigger
-                    value="register"
-                    className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-yellow-500 data-[state=active]:to-yellow-600 data-[state=active]:text-white"
-                  >
+                  <TabsTrigger value="register" className="data-[state=active]:bg-gradient-to-r data-[state=active]:from-yellow-500 data-[state=active]:to-yellow-600 data-[state=active]:text-white">
                     Register
                   </TabsTrigger>
                 </TabsList>
@@ -163,12 +153,12 @@ const Signin = () => {
                   </motion.div>
                 )}
 
+                {/* ✅ LOGIN FORM */}
                 <TabsContent value="login" className={undefined}>
                   <form onSubmit={handleLoginSubmit} className="space-y-4">
+                    {/* Email */}
                     <div className="space-y-2">
-                      <Label htmlFor="email" className="text-slate-700">
-                        Email
-                      </Label>
+                      <Label htmlFor="email" className={undefined}>Email</Label>
                       <div className="relative">
                         <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
                         <Input
@@ -176,26 +166,16 @@ const Signin = () => {
                           type="email"
                           placeholder="name@example.com"
                           value={loginData.email}
-                          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                            setLoginData({ ...loginData, email: e.target.value })
-                          }
-                          className="pl-10 border-sky-200 focus:border-yellow-500 focus:ring-yellow-500"
+                          onChange={(e: { target: { value: any; }; }) => setLoginData({ ...loginData, email: e.target.value })}
                           required
+                          className="pl-10"
                         />
                       </div>
                     </div>
+
+                    {/* Password */}
                     <div className="space-y-2">
-                      <div className="flex items-center justify-between">
-                        <Label htmlFor="password" className="text-slate-700">
-                          Password
-                        </Label>
-                        <Link
-                          href="/forgot-password"
-                          className="text-xs text-yellow-600 hover:text-yellow-700 hover:underline"
-                        >
-                          Forgot password?
-                        </Link>
-                      </div>
+                      <Label htmlFor="password" className={undefined}>Password</Label>
                       <div className="relative">
                         <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
                         <Input
@@ -203,57 +183,49 @@ const Signin = () => {
                           type={showPassword ? "text" : "password"}
                           placeholder="••••••••"
                           value={loginData.password}
-                          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                            setLoginData({ ...loginData, password: e.target.value })
-                          }
-                          className="pl-10 pr-10 border-sky-200 focus:border-sky-500 focus:ring-sky-500"
+                          onChange={(e: { target: { value: any; }; }) => setLoginData({ ...loginData, password: e.target.value })}
                           required
+                          className="pl-10 pr-10"
                         />
                         <Button
                           type="button"
                           variant="ghost"
                           size="icon"
-                          className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
+                          className="absolute right-0 top-0 h-full px-3"
                           onClick={() => setShowPassword(!showPassword)}
                         >
-                          {showPassword ? (
-                            <EyeOff className="w-4 h-4 text-slate-400" />
-                          ) : (
-                            <Eye className="w-4 h-4 text-slate-400" />
-                          )}
+                          {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                         </Button>
                       </div>
                     </div>
-                    <Button
-                      type="submit"
-                      className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white shadow-lg"
-                      disabled={isLoading} variant={undefined} size={undefined}                    >
+
+                    <Button type="submit" className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white" variant={undefined} size={undefined}>
                       {isLoading ? "Logging in..." : "Login"}
                     </Button>
                   </form>
                 </TabsContent>
 
+                {/* ✅ REGISTER FORM */}
                 <TabsContent value="register" className={undefined}>
                   <form onSubmit={handleRegisterSubmit} className="space-y-4">
+                    {/* Name */}
                     <div className="space-y-2">
-                      <Label htmlFor="name" className="text-slate-700">
-                        Full Name
-                      </Label>
+                      <Label htmlFor="name" className={undefined}>Full Name</Label>
                       <div className="relative">
                         <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
                         <Input
                           id="name"
                           placeholder="John Doe"
                           value={registerData.name}
-                          onChange={(e: ChangeEvent<HTMLInputElement>) => setRegisterData({ ...registerData, name: e.target.value })}
-                          className="pl-10 border-yellow-200 focus:border-yellow-500 focus:ring-yellow-500"
-                          required type={undefined}                        />
+                          onChange={(e: { target: { value: any; }; }) => setRegisterData({ ...registerData, name: e.target.value })}
+                          required
+                          className="pl-10" type={undefined} />
                       </div>
                     </div>
+
+                    {/* Email */}
                     <div className="space-y-2">
-                      <Label htmlFor="register-email" className="text-slate-700">
-                        Email
-                      </Label>
+                      <Label htmlFor="register-email" className={undefined}>Email</Label>
                       <div className="relative">
                         <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
                         <Input
@@ -261,18 +233,16 @@ const Signin = () => {
                           type="email"
                           placeholder="name@example.com"
                           value={registerData.email}
-                          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                            setRegisterData({ ...registerData, email: e.target.value })
-                          }
-                          className="pl-10 border-yellow-200 focus:border-yellow-500 focus:ring-yellow-500"
+                          onChange={(e: { target: { value: any; }; }) => setRegisterData({ ...registerData, email: e.target.value })}
                           required
+                          className="pl-10"
                         />
                       </div>
                     </div>
+
+                    {/* Password */}
                     <div className="space-y-2">
-                      <Label htmlFor="register-password" className="text-slate-700">
-                        Password
-                      </Label>
+                      <Label htmlFor="register-password" className={undefined}>Password</Label>
                       <div className="relative">
                         <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
                         <Input
@@ -280,18 +250,16 @@ const Signin = () => {
                           type={showPassword ? "text" : "password"}
                           placeholder="••••••••"
                           value={registerData.password}
-                          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                            setRegisterData({ ...registerData, password: e.target.value })
-                          }
-                          className="pl-10 border-yellow-200 focus:border-yellow-500 focus:ring-yellow-500"
+                          onChange={(e: { target: { value: any; }; }) => setRegisterData({ ...registerData, password: e.target.value })}
                           required
+                          className="pl-10"
                         />
                       </div>
                     </div>
+
+                    {/* Confirm Password */}
                     <div className="space-y-2">
-                      <Label htmlFor="confirm-password" className="text-slate-700">
-                        Confirm Password
-                      </Label>
+                      <Label htmlFor="confirm-password" className={undefined}>Confirm Password</Label>
                       <div className="relative">
                         <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-slate-400" />
                         <Input
@@ -299,31 +267,14 @@ const Signin = () => {
                           type={showPassword ? "text" : "password"}
                           placeholder="••••••••"
                           value={registerData.confirmPassword}
-                          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                            setRegisterData({ ...registerData, confirmPassword: e.target.value })
-                          }
-                          className="pl-10 pr-10 border-yellow-200 focus:border-yellow-500 focus:ring-yellow-500"
+                          onChange={(e: { target: { value: any; }; }) => setRegisterData({ ...registerData, confirmPassword: e.target.value })}
                           required
+                          className="pl-10 pr-10"
                         />
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="icon"
-                          className="absolute right-0 top-0 h-full px-3 hover:bg-transparent"
-                          onClick={() => setShowPassword(!showPassword)}
-                        >
-                          {showPassword ? (
-                            <EyeOff className="w-4 h-4 text-slate-400" />
-                          ) : (
-                            <Eye className="w-4 h-4 text-slate-400" />
-                          )}
-                        </Button>
                       </div>
                     </div>
-                    <Button
-                      type="submit"
-                      className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-white shadow-lg"
-                      disabled={isLoading} variant={undefined} size={undefined}                    >
+
+                    <Button type="submit" className="w-full bg-gradient-to-r from-yellow-500 to-yellow-600 text-white" variant={undefined} size={undefined}>
                       {isLoading ? "Creating Account..." : "Create Account"}
                     </Button>
                   </form>
@@ -333,11 +284,11 @@ const Signin = () => {
               <CardFooter className="flex justify-center border-t border-sky-100 p-6">
                 <div className="text-center text-sm text-slate-600">
                   By continuing, you agree to our{" "}
-                  <Link href="#" className="text-yellow-600 hover:text-yellow-700 hover:underline">
+                  <Link href="#" className="text-yellow-600 hover:underline">
                     Terms of Service
                   </Link>{" "}
                   and{" "}
-                  <Link href="#" className="text-yellow-600 hover:text-yellow-700 hover:underline">
+                  <Link href="#" className="text-yellow-600 hover:underline">
                     Privacy Policy
                   </Link>
                 </div>
