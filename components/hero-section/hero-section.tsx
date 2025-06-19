@@ -71,7 +71,8 @@ export default function HeroSection() {
             >
               JOIN
             </button>
-            <AuthDropdown />
+            {/* <AuthDropdown /> */}
+            <TicketDropdown />
           </div>
         </nav>
       </div>

@@ -19,6 +19,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en" className={montserrat.className} >
       <ReferralHandler />
       <body cz-shortcut-listen="true">{children}</body>
-    </html>
+      </html>
   )
 }
