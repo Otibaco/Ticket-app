@@ -94,11 +94,9 @@ export default function TicketsPage({ params }: PageProps) {
                                     className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2" variant={undefined} size={undefined}                >
                                     Register
                                 </Button>
-                                <Button
-                                    onClick={() => handleBooking("regular")}
-                                    className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2" variant={undefined} size={undefined}                >
+                                <Link href="https://t.me/Stanleymgt" className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2">
                                     Buy Now
-                                </Button>
+                                </Link>
                             </div>
                         </div>
 

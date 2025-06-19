@@ -10,27 +10,27 @@ export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // ✅ Allow access to public paths
-  if (
-    pathname.startsWith("/sign-in") ||
-    pathname === "/"
-  ) {
-    return NextResponse.next();
-  }
+  // if (
+  //   pathname.startsWith("/sign-in") ||
+  //   pathname === "/"
+  // ) {
+  //   return NextResponse.next();
+  // }
 
   // ❌ If not authenticated → redirect to login
-  if (!token) {
-    return NextResponse.redirect(new URL("/sign-in", req.url));
-  }
+  // if (!token) {
+  //   return NextResponse.redirect(new URL("/sign-in", req.url));
+  // }
 
   // ✅ Admin route protection
-  if (pathname.startsWith("/admin") && token.role !== "admin") {
-    return NextResponse.redirect(new URL("/not-authorized", req.url)); // or a 403 page
-  }
+  // if (pathname.startsWith("/admin") && token.role !== "admin") {
+  //   return NextResponse.redirect(new URL("/not-authorized", req.url)); // or a 403 page
+  // }
 
   // ✅ User route protection
-  if (pathname.startsWith("/celebrity") && token.role !== "user") {
-    return NextResponse.redirect(new URL("/not-authorized", req.url));
-  }
+  // if (pathname.startsWith("/celebrity") && token.role !== "user") {
+  //   return NextResponse.redirect(new URL("/not-authorized", req.url));
+  // }
 
   return NextResponse.next();
 }

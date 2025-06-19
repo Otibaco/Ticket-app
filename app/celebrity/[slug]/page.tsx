@@ -59,7 +59,6 @@ export default function CelebrityProfilePage({ params }: PageProps) {
               <Image
                 src={celebrity.image}
                 alt={celebrity.name}
-                objectFit="contain"
                 width={148}
                 height={148}
                 priority
@@ -101,7 +100,7 @@ export default function CelebrityProfilePage({ params }: PageProps) {
 
             {/* Buy Ticket Button */}
             <Link href={`/celebrity/${celebrity.slug}/tickets`}>
-              <Button className="w-full bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 rounded-lg text-lg" variant={undefined} size={undefined}>
+              <Button className="w-fit bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 rounded-lg text-sm lg:text-lg" variant={undefined} size={undefined}>
                 🎫 Click To Buy Ticket
               </Button>
             </Link>

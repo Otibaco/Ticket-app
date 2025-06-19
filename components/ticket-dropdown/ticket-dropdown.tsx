@@ -37,9 +37,9 @@ export default function TicketDropdown() {
         }`}
       >
         <div className="py-2">
-          <div className="px-4 py-2 text-yellow-400 text-sm font-semibold border-b border-yellow-400/20">
+          {/* <div className="px-4 py-2 text-yellow-400 text-sm font-semibold border-b border-yellow-400/20">
             Select Celebrity
-          </div>
+          </div> */}
           {celebrities.map((celebrity) => (
             <Link
               key={celebrity.id}
