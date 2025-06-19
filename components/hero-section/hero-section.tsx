@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import TicketDropdown from "../ticket-dropdown/ticket-dropdown"
@@ -71,7 +70,8 @@ export default function HeroSection() {
             >
               JOIN
             </button>
-            <AuthDropdown />
+            {/* <AuthDropdown /> */}
+            <TicketDropdown />
           </div>
         </nav>
       </div>
