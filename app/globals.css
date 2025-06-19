@@ -120,14 +120,14 @@ root {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-.orbitron-page {
+/* .orbitron-page {
   font-family: var(--font-orbitron), sans-serif;
 }
 
 .orbitron-page .ticket-card h3,
 .orbitron-page .ticket-card p {
-  font-family: var(--font-montserrat), sans-serif;
-}
+  font-family: var(--font-orbitron), sans-serif;
+} */
 
 @layer base {
   * {
