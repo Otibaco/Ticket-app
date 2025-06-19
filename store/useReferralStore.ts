@@ -5,17 +5,19 @@ interface ReferralState {
   referral: string | null
   setRefCode: (ref: string) => void
   clearRefCode: () => void
+  getRefCode: () => string | null // <-- Add this
 }
 
 export const useReferralStore = create<ReferralState>()(
   persist(
-    (set) => ({
+    (set, get) => ({
       referral: null,
       setRefCode: (ref) => set({ referral: ref }),
       clearRefCode: () => set({ referral: null }),
+      getRefCode: () => get().referral, // <-- Add this
     }),
     {
-      name: "referral-storage", // key in localStorage
+      name: "referral-storage",
     }
   )
 )

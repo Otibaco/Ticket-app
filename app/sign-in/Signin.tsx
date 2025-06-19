@@ -13,6 +13,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { signIn } from "next-auth/react";
 
+import { useReferralStore } from "@/store/useReferralStore" // <-- Add this import
+
 interface LoginData {
   email: string;
   password: string;
@@ -26,6 +28,7 @@ interface RegisterData {
 }
 
 const Signin = () => {
+  const getRefCode = useReferralStore((state) => state.getRefCode); // <-- Add this
   const [loginData, setLoginData] = useState<LoginData>({ email: "", password: "" });
   const [registerData, setRegisterData] = useState<RegisterData>({
     name: "",
@@ -78,14 +81,17 @@ const Signin = () => {
     setIsLoading(true);
 
     try {
-      const res = await fetch("/api/auth/register", {
+      const referralCode = getRefCode(); // <-- Get referral code from store
+
+     const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          username: registerData.name, // ✅ match backend expected name
+          username: registerData.name,
           email: registerData.email,
           password: registerData.password,
           confirmPassword: registerData.confirmPassword,
+          referralCode, // <-- Send referral code
         }),
       });
 
@@ -97,9 +103,7 @@ const Signin = () => {
         toast.error(data.error || "Registration failed.");
         return;
       }
-
       toast.success("Registration successful! You can now log in.");
-
       // ✅ Reset fields
       setRegisterData({ name: "", email: "", password: "", confirmPassword: "" });
     } catch (err) {

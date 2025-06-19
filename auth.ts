@@ -1,7 +1,6 @@
 // auth.ts
 
 import NextAuth, { AuthOptions, Session, User as NextAuthUser } from "next-auth";
-import { DefaultSession } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 import { connectToDB } from "./lib/connectDB";
