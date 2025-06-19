@@ -4,6 +4,7 @@ import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { celebrities } from "@/lib/celebrities"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 
 interface PageProps {
   params: Promise<{ slug: string }>
@@ -48,13 +49,21 @@ export default function CelebrityProfilePage({ params }: PageProps) {
         <div className="bg-white rounded-lg shadow-xl mb-8 overflow-hidden">
           <div className="p-8 text-center">
             {/* Profile Image */}
-            <div className="w-32 h-32 mx-auto mb-4 bg-gradient-to-br from-cyan-400 to-blue-500 rounded-full flex items-center justify-center border-4 border-cyan-400 relative">
-              <span className="text-white font-bold text-3xl">
+            <div className="w-18 h-18 overflow-hidden mx-auto mb-4 bg-gradient-to-br from-white/10 to-white/20 rounded-full flex items-center justify-center border-4 border-cyan-400 relative">
+              {/* <span className="text-white font-bold text-3xl">
                 {celebrity.name
                   .split(" ")
                   .map((n) => n[0])
                   .join("")}
-              </span>
+              </span> */}
+              <Image
+                src={celebrity.image}
+                alt={celebrity.name}
+                objectFit="contain"
+                width={148}
+                height={148}
+                priority
+              />
             </div>
 
             {/* Celebrity Badge */}

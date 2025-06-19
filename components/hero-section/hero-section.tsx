@@ -116,7 +116,8 @@ export default function HeroSection() {
 
         {/* Album title and content */}
         <div
-          className="relative z-10 text-center max-w-[95vw] xs:max-w-xs sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mb-10 sm:mb-16"
+        // className="relative z-10 text-center max-w-[95vw] xs:max-w-xs sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mb-10 sm:mb-16"
+        className="relative z-10 text-center max-w-[95vw] xs:max-w-xs sm:max-w-2xl md:max-w-3xl lg:max-w-10/12 mb-10 sm:mb-16"
           style={{
             transform: `translateY(${scrollY * -0.05}px)`,
             willChange: "transform",
