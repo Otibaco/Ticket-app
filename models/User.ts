@@ -13,6 +13,7 @@ export interface IUser extends Document {
   lastLogin?: Date | null;
   role: "user" | "admin";
   status: "active" | "inactive";
+  referralCode?: string | null; // <-- Add this
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -64,6 +65,10 @@ const UserSchema: Schema<IUser> = new Schema(
       type: String,
       enum: ["active", "inactive"],
       default: "active",
+    },
+    referralCode: {
+      type: String,
+      default: null,
     },
   },
   {

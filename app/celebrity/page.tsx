@@ -1,10 +1,10 @@
-"use client";
-
-import Link from "next/link";
-import { ArrowLeft, LogOut } from "lucide-react";
-import { celebrities } from "@/lib/celebrities";
-import { signOut } from "next-auth/react";
+"use client"
+import Link from "next/link"
+import { ArrowLeft, LogOut } from "lucide-react"
+import { celebrities } from "@/lib/celebrities"
+import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 export default function CelebrityPage() {
   const router = useRouter();
@@ -60,13 +60,23 @@ export default function CelebrityPage() {
               className="bg-white/10 backdrop-blur-sm rounded-lg overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105"
             >
               <div className="p-6 text-center">
-                <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
-                  <span className="text-black font-bold text-2xl">
+                <div className="w-20 h-20 overflow-hidden mx-auto mb-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                  {/* <span className="text-black font-bold text-2xl">
                     {celebrity.name
                       .split(" ")
                       .map((n) => n[0])
                       .join("")}
-                  </span>
+                  </span> */}
+                  <Image
+                    // className="w-full h-full"
+                    src={celebrity.image}
+                    alt={celebrity.name}
+                    // fill
+                    objectFit="contain"
+                    width={148}
+                    height={148}
+                    priority
+                  />
                 </div>
                 <h3 className="text-white font-bold text-xl mb-2">{celebrity.name}</h3>
                 <p className="text-white/80 text-sm mb-4">{celebrity.roles.join(" • ")}</p>

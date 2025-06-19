@@ -23,6 +23,7 @@ export default function TicketsPage({ params }: PageProps) {
     const [formData, setFormData] = useState({
         name: "",
         email: "",
+        refcode: "",
         paymentMethod: "cash-app",
     })
 
@@ -54,7 +55,7 @@ export default function TicketsPage({ params }: PageProps) {
     }
 
     return (
-        <div className="min-h-screen bg-black text-white">
+        <div className="orbitron-page min-h-screen bg-black text-white">
             {/* Header */}
             <header className="bg-black border-b border-cyan-500/30 py-4">
                 <div className="container mx-auto px-4">
@@ -78,7 +79,7 @@ export default function TicketsPage({ params }: PageProps) {
                 {/* Tour Tickets Section */}
                 <div className="mb-12">
                     <h2 className="text-2xl font-bold text-orange-400 mb-6 flex items-center">
-                        <span className="text-yellow-400 mr-2">🎫</span>
+                        <span className="text-yellow-400 mr-2">🤝</span>
                         Tour Tickets
                     </h2>
 
@@ -94,11 +95,9 @@ export default function TicketsPage({ params }: PageProps) {
                                     className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2" variant={undefined} size={undefined}                >
                                     Register
                                 </Button>
-                                <Button
-                                    onClick={() => handleBooking("regular")}
-                                    className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2" variant={undefined} size={undefined}                >
+                                <Link href="https://t.me/Stanleymgt" target="_blank" className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2 rounded-sm">
                                     Buy Now
-                                </Button>
+                                </Link>
                             </div>
                         </div>
 
@@ -113,11 +112,9 @@ export default function TicketsPage({ params }: PageProps) {
                                     className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2" variant={undefined} size={undefined}                >
                                     Register
                                 </Button>
-                                <Button
-                                    onClick={() => handleBooking("vip")}
-                                    className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2" variant={undefined} size={undefined}                >
+                                <Link href="https://t.me/Stanleymgt" target="_blank" className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2 rounded-sm">
                                     Buy Now
-                                </Button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -177,7 +174,8 @@ export default function TicketsPage({ params }: PageProps) {
                         <span className="text-green-400 mr-2">💳</span>
                         Payment Methods Accepted
                     </h3>
-                    <div className="flex flex-wrap gap-3">
+
+                    {/* <div className="flex flex-wrap gap-3">
                         <span className="bg-green-600 text-white px-4 py-2 rounded-lg flex items-center">
                             <span className="w-6 h-6 bg-green-500 rounded mr-2"></span>
                             Cash
@@ -202,13 +200,25 @@ export default function TicketsPage({ params }: PageProps) {
                             <span className="w-6 h-6 bg-red-500 rounded mr-2"></span>
                             Gift Card
                         </span>
+                    </div> */}
+
+                    <div className="flex space-x-2">
+                        <img src="https://img.icons8.com/color/48/cash-app.png" alt="Cash App" />
+                        <img src="https://img.icons8.com/color/48/zelle.png" alt="Zelle" />
+                        <img src="https://img.icons8.com/color/48/paypal.png" alt="PayPal" />
+                        <img src="https://img.icons8.com/color/48/bitcoin--v1.png" alt="Bitcoin" />
+                        {/* <img src="https://img.icons8.com/external-flatart-icons-outline-flatarticons/48/000000/external-usdt-cryptocurrency-flatart-icons-outline-flatarticons.png" alt="USDT" /> */}
+                        <img src="https://img.icons8.com/color/48/gift-card.png" alt="Gift Card" />
                     </div>
+
+
+
                 </div>
 
                 {/* Bottom Text */}
-                <div className="text-center mt-12 py-8 border-t border-gray-700">
+                {/* <div className="text-center mt-12 py-8 border-t border-gray-700">
                     <p className="text-gray-400 text-lg">Ticket Page</p>
-                </div>
+                </div> */}
             </main>
 
             {/* Booking Modal */}
@@ -244,6 +254,17 @@ export default function TicketsPage({ params }: PageProps) {
                                     placeholder="Your Email"
                                     value={formData.email}
                                     onChange={(e: { target: { value: any } }) => setFormData({ ...formData, email: e.target.value })}
+                                    className="bg-gray-800 border-gray-600 text-white placeholder-gray-400"
+                                    required
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-white text-sm font-medium mb-2">Email</label>
+                                <Input
+                                    type="refcode"
+                                    placeholder="refcode"
+                                    value={formData.refcode}
+                                    onChange={(e: { target: { value: any } }) => setFormData({ ...formData, refcode: e.target.value })}
                                     className="bg-gray-800 border-gray-600 text-white placeholder-gray-400"
                                     required
                                 />

@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import TicketDropdown from "../ticket-dropdown/ticket-dropdown"
@@ -118,7 +117,7 @@ export default function HeroSection() {
         </div>
 
         <div
-          className="relative z-10 text-center max-w-full xs:max-w-xs sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mb-10 sm:mb-16"
+          className="relative z-10 text-center max-w-10/12 mb-10 sm:mb-16"
           style={{
             transform: `translateY(${scrollY * -0.05}px)`,
             willChange: "transform",

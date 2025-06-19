@@ -1,6 +1,15 @@
 import ReferralHandler from "@/components/ReferralHandler/ReferralHandler"
 import "./globals.css"
-import { Montserrat } from "next/font/google"
+import { Toaster } from "sonner"
+
+import { Orbitron, Montserrat } from "next/font/google"
+
+const orbitron = Orbitron({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-orbitron",
+  display: "swap",
+})
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -16,9 +25,12 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={montserrat.className} >
-      <ReferralHandler />
-      <body cz-shortcut-listen="true">{children}</body>
-      </html>
+    <html lang="en" className={`{montserrat.variable}`}>
+      <body cz-shortcut-listen="true">
+        <ReferralHandler />
+        {children}
+        <Toaster />
+      </body>
+    </html>
   )
 }

@@ -11,16 +11,17 @@ interface RegisterBody {
   email: string;
   password: string;
   confirmPassword: string;
+  referralCode?: string; // <-- Add this
 }
 
 export async function POST(req: NextRequest) {
   try {
     await connectToDB();
 
-    const { username, email, password, confirmPassword }: RegisterBody = await req.json();
+    const { username, email, password, confirmPassword, referralCode }: RegisterBody = await req.json();
 
     // Validate required fields
-    if (!username || !email || !password || !confirmPassword) {
+    if (!username || !email || !password || !confirmPassword || !referralCode) {
       return NextResponse.json({ error: "All fields are required." }, { status: 400 });
     }
 
@@ -44,7 +45,8 @@ export async function POST(req: NextRequest) {
       username,
       email,
       password: hashedPassword,
-      role: "user", // ✅ locked to user only
+      role: "user",
+      referralCode: referralCode || null, // <-- Store referral code
     });
 
     return NextResponse.json({
