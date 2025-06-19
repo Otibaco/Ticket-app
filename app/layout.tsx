@@ -1,3 +1,4 @@
+import ReferralHandler from "@/components/ReferralHandler/ReferralHandler"
 import "./globals.css"
 import { Montserrat } from "next/font/google"
 
@@ -16,6 +17,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={montserrat.className} >
+      <ReferralHandler />
       <body cz-shortcut-listen="true">{children}</body>
     </html>
   )
