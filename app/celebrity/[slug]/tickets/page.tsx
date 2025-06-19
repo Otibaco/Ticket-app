@@ -54,7 +54,7 @@ export default function TicketsPage({ params }: PageProps) {
     }
 
     return (
-        <div className="min-h-screen bg-black text-white">
+        <div className="orbitron-page min-h-screen bg-black text-white">
             {/* Header */}
             <header className="bg-black border-b border-cyan-500/30 py-4">
                 <div className="container mx-auto px-4">
@@ -94,7 +94,7 @@ export default function TicketsPage({ params }: PageProps) {
                                     className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2" variant={undefined} size={undefined}                >
                                     Register
                                 </Button>
-                                <Link href="https://t.me/Stanleymgt" className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2">
+                                <Link href="https://t.me/Stanleymgt" target="_blank" className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2 rounded-sm">
                                     Buy Now
                                 </Link>
                             </div>
@@ -111,11 +111,9 @@ export default function TicketsPage({ params }: PageProps) {
                                     className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2" variant={undefined} size={undefined}                >
                                     Register
                                 </Button>
-                                <Button
-                                    onClick={() => handleBooking("vip")}
-                                    className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2" variant={undefined} size={undefined}                >
+                                <Link href="https://t.me/Stanleymgt" target="_blank" className="bg-cyan-500 hover:bg-cyan-600 text-white px-6 py-2 rounded-sm">
                                     Buy Now
-                                </Button>
+                                </Link>
                             </div>
                         </div>
                     </div>
@@ -204,9 +202,9 @@ export default function TicketsPage({ params }: PageProps) {
                 </div>
 
                 {/* Bottom Text */}
-                <div className="text-center mt-12 py-8 border-t border-gray-700">
+                {/* <div className="text-center mt-12 py-8 border-t border-gray-700">
                     <p className="text-gray-400 text-lg">Ticket Page</p>
-                </div>
+                </div> */}
             </main>
 
             {/* Booking Modal */}
