@@ -1,9 +1,10 @@
+"use client"
 import Link from "next/link"
 import { ArrowLeft, LogOut } from "lucide-react"
 import { celebrities } from "@/lib/celebrities"
 import Image from "next/image";
-import { signOut } from "next-auth/react"
 import { useRouter } from "next/navigation";
+import { signOut } from "next-auth/react";
 
 export default function CelebrityPage() {
   const router = useRouter();
