@@ -2,18 +2,18 @@ export default function VideoSection() {
   const videos = [
     {
       title: "Dogstar - Glimmer (Official Lyric Video)",
-      embedId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
-      thumbnail: "/images/video-background.jpeg",
+      embedId: "https://www.youtube.com/watch?v=EbOBa5MISPo", // Replace with actual YouTube video ID
+      thumbnail: "/image003.png",
     },
     {
       title: "Dogstar - Everything Turns Around (Official Video)",
-      embedId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
-      thumbnail: "/placeholder.svg?height=315&width=560",
+      embedId: "https://www.youtube.com/watch?v=5MjVbKRaZDI", // Replace with actual YouTube video ID
+      thumbnail: "/image005.png",
     },
     {
       title: "Dogstar - Breach (Official Video)",
-      embedId: "dQw4w9WgXcQ", // Replace with actual YouTube video ID
-      thumbnail: "/placeholder.svg?height=315&width=560",
+      embedId: "https://www.youtube.com/channel/UCHC9eWDq_UdZPoSIXPGFkqg", // Replace with actual YouTube video ID
+      thumbnail: "/image005.png",
     },
   ]
 

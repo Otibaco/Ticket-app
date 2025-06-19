@@ -5,6 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import TicketDropdown from "../ticket-dropdown/ticket-dropdown"
+import AuthDropdown from "../authdropdown/AuthDropdown"
 
 export default function HeroSection() {
   const [scrollY, setScrollY] = useState(0)
@@ -14,6 +15,7 @@ export default function HeroSection() {
     const handleScroll = () => {
       setScrollY(window.scrollY)
     }
+    
 
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
@@ -50,26 +52,26 @@ export default function HeroSection() {
       {/* Navigation menu */}
       <div className="absolute top-0 left-0 right-0 z-20 pt-6 sm:pt-8">
         <nav className="container mx-auto px-2 sm:px-4">
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-6 md:gap-12 lg:gap-16">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-6 md:gap-10 lg:gap-10">
             <button
               onClick={() => scrollToSection("tour")}
-              className="text-white hover:text-yellow-400 transition-colors font-medium tracking-wider text-base sm:text-lg cursor-pointer"
+              className="text-white hover:text-yellow-400  transition-colors font-bold tracking-wider text-base sm:text-lg cursor-pointer"
             >
               TOUR
             </button>
             <button
               onClick={() => scrollToSection("watch")}
-              className="text-white hover:text-yellow-400 transition-colors font-medium tracking-wider text-base sm:text-lg cursor-pointer"
+              className="text-white hover:text-yellow-400 transition-colors font-bold tracking-wider text-base sm:text-lg cursor-pointer"
             >
               WATCH
             </button>
             <button
               onClick={() => scrollToSection("join")}
-              className="text-white hover:text-yellow-400 transition-colors font-medium tracking-wider text-base sm:text-lg cursor-pointer"
+              className="text-white hover:text-yellow-400 transition-colors font-bold tracking-wider text-base sm:text-lg cursor-pointer"
             >
               JOIN
             </button>
-            <TicketDropdown />
+            <AuthDropdown />
           </div>
         </nav>
       </div>
@@ -82,7 +84,7 @@ export default function HeroSection() {
           style={{
             transform: `translateY(${scrollY * -0.2}px)`,
             willChange: "transform",
-            opacity: 0.7,
+            opacity: 0.8,
           }}
         >
           <Image
@@ -114,25 +116,23 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Album title and content */}
         <div
-        // className="relative z-10 text-center max-w-[95vw] xs:max-w-xs sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mb-10 sm:mb-16"
-        className="relative z-10 text-center max-w-[95vw] xs:max-w-xs sm:max-w-2xl md:max-w-3xl lg:max-w-10/12 mb-10 sm:mb-16"
+          className="relative z-10 text-center max-w-[95vw] xs:max-w-xs sm:max-w-2xl md:max-w-3xl lg:max-w-4xl mb-10 sm:mb-16"
           style={{
             transform: `translateY(${scrollY * -0.05}px)`,
             willChange: "transform",
           }}
         >
-          <h2 className="text-lg xs:text-xl sm:text-3xl md:text-5xl lg:text-6xl font-black tracking-wider text-white mb-6 sm:mb-10 leading-tight">
+          <h2 className="text-3xl xs:text-3xl sm:text-3xl md:text-5xl lg:text-6xl font-black tracking-wider text-white mb-6 sm:mb-10 leading-tight">
             SOMEWHERE BETWEEN THE POWER LINES AND PALM TREES
           </h2>
 
-          <h3 className="text-base xs:text-lg sm:text-2xl md:text-4xl lg:text-5xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-yellow-500 mb-6 sm:mb-10">
+          <h3 className="text-4xl xs:text-2xl sm:text-2xl md:text-4xl lg:text-5xl font-black tracking-wider  bg-clip-text text-yellow-400 mb-6 sm:mb-10">
             AVAILABLE NOW
           </h3>
 
           <Button
-            className="w-80 xs:w-auto bg-gradient-to-r from-yellow-400 to-orange-500 text-black font-bold tracking-wider px-8 xs:px-10 sm:px-16 py-7 xs:py-8 sm:py-10 text-base xs:text-lg sm:text-2xl rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-none"
+            className="w-80 xs:w-auto bg-yellow-400 text-white font-bold tracking-wider px-8 xs:px-10 sm:px-16 py-7 xs:py-8 sm:py-10 xs:text-xl text-2xl sm:text-2xl rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-none h-28 xs:h-16 sm:h-20"
             style={{
               backgroundImage: "linear-gradient(to right, #facc15, #f97316)",
             }}

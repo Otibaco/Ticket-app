@@ -32,7 +32,7 @@ export default function JoinSection() {
             {/* Content container */}
             <div className="relative min-h-[60vh] md:min-h-[70vh] w-full flex flex-col items-center justify-center px-4 py-16 md:py-24 lg:py-32">
                 {/* JOIN heading */}
-                <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-500 mb-8 md:mb-12 text-center">
+                <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-6xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-b from-yellow-300 to-yellow-500 mb-8 md:mb-12 text-center">
                     JOIN
                 </h2>
 
@@ -50,11 +50,11 @@ export default function JoinSection() {
                             value={email}
                             onChange={(e: { target: { value: React.SetStateAction<string> } }) => setEmail(e.target.value)}
                             required
-                            className="flex-1 bg-black/20 border-yellow-400/50 text-white placeholder:text-white/70 focus:border-yellow-400 focus:ring-yellow-400/20 h-12 sm:h-14 text-base sm:text-lg"
+                            className="flex-1 bg-black/20 border-yellow-400/50 text-white placeholder:text-white/70 focus:border-yellow-400 focus:ring-yellow-400/20 h-24 sm:h-14 text-base sm:text-lg"
                         />
                         <Button
                             type="submit"
-                            className="bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 text-black font-bold tracking-wider px-6 py-3 h-12 sm:h-14 text-base sm:text-lg" variant={undefined} size={undefined}            >
+                            className="bg-yellow-400  text-white font-bold tracking-wider px-6 py-3 h-12 sm:h-14 text-base sm:text-lg" variant={undefined} size={undefined}            >
                             SUBSCRIBE
                         </Button>
                     </div>
