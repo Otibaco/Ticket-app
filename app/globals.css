@@ -49,7 +49,7 @@
   color: #000;
 }
 
-root {
+:root{
   --font-orbitron: 'Orbitron', sans-serif;
   --font-montserrat: 'Montserrat', sans-serif;
   --radius: 0.625rem;
@@ -120,14 +120,13 @@ root {
   --sidebar-ring: oklch(0.556 0 0);
 }
 
-/* .orbitron-page {
-  font-family: var(--font-orbitron), sans-serif;
+.orbitron-page {
+  font-family: var(--font-orbitron), sans-serif !important;
 }
-
 .orbitron-page .ticket-card h3,
 .orbitron-page .ticket-card p {
-  font-family: var(--font-orbitron), sans-serif;
-} */
+  font-family: var(--font-orbitron), sans-serif !important;
+}
 
 @layer base {
   * {
@@ -136,6 +135,7 @@ root {
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-montserrat), sans-serif;
 
   }
 }

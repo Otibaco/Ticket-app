@@ -75,4 +75,98 @@ export const celebrities: Celebrity[] = [
       vip: { price: 1200, description: "1-hour session, signed gift, private photoshoot" },
     },
   },
+  {
+    id: "4",
+    name: "Paul Wesley",
+    slug: "paul-wesley",
+    image: "/celebrity/paul.jpg",
+    contactInfo: "Contact Info",
+    roles: ["Film Actors", "Television Actors", "Directors", "Producers"],
+    socialHandle: "@paulvedere",
+    about:
+      "Paul Wesley is an American actor, director, and producer best known for his breakout role as Stefan Salvatore in the hit supernatural drama series The Vampire Diaries. With his brooding charm and emotional depth, Wesley quickly became a fan favorite. He has also directed and produced episodes of The Vampire Diaries and its spin-off Legacies. Recently, he joined the Star Trek universe as Captain James T. Kirk in Strange New Worlds, showcasing his range and versatility.",
+    ticketTypes: {
+      regular: {
+        price: 250,
+        description: "Standard access to the event arena",
+      },
+      vip: {
+        price: 400,
+        description: "Front row, exclusive lounge access, and backstage pass",
+      },
+    },
+    privateBooking: {
+      regular: {
+        price: 500,
+        description: "30-minute secret meeting (virtual or in-person)",
+      },
+      vip: {
+        price: 900,
+        description: "1-hour session, signed gift, private photoshoot",
+      },
+    },
+  },
+  {
+    id: "5",
+    name: "Katheryn Winnick",
+    slug: "katheryn-winnick",
+    image: "/celebrity/katheryn.jpg",
+    contactInfo: "Contact Info",
+    roles: ["Film Actors", "Supporting Actors", "Television Actors", "Series Regulars"],
+    socialHandle: "@katherynwinnick",
+    about:
+      "Katheryn Winnick is a Canadian actress best known for her role as Lagertha in the historical drama series Vikings. With her martial arts background, she brings physical intensity to her roles, often performing her own stunts. She has appeared in Big Sky, Wu Assassins, The Dark Tower, and Polar. Katheryn is celebrated for her strength, elegance, and versatility in both film and television.",
+    ticketTypes: {
+      regular: {
+        price: 270,
+        description: "Standard access to the event arena",
+      },
+      vip: {
+        price: 470,
+        description: "Front row, exclusive lounge access, and backstage pass",
+      },
+    },
+    privateBooking: {
+      regular: {
+        price: 550,
+        description: "30-minute secret meeting (virtual or in-person)",
+      },
+      vip: {
+        price: 1000,
+        description: "1-hour session, signed gift, private photoshoot",
+      },
+    },
+  },
+  {
+    id: "6",
+    name: "Ian Somerhalder",
+    slug: "ian-somerhalder",
+    image: "/celebrity/ian.jpg",
+    contactInfo: "Contact Info",
+    roles: ["Film Actors", "Television Actors", "Movie Directors"],
+    socialHandle: "@iansomerhalder",
+    about:
+      "Ian Somerhalder is an American actor, director, and environmental activist best known for his portrayal of Damon Salvatore in The Vampire Diaries. He began his career in modeling and moved into acting with roles in Lost and The Rules of Attraction. Off-screen, he’s a passionate advocate for the environment through the Ian Somerhalder Foundation. His combination of charisma, talent, and activism makes him a standout figure in entertainment.",
+    ticketTypes: {
+      regular: {
+        price: 260,
+        description: "Standard access to the event arena",
+      },
+      vip: {
+        price: 460,
+        description: "Front row, exclusive lounge access, and backstage pass",
+      },
+    },
+    privateBooking: {
+      regular: {
+        price: 520,
+        description: "30-minute secret meeting (virtual or in-person)",
+      },
+      vip: {
+        price: 950,
+        description: "1-hour session, signed gift, private photoshoot",
+      },
+    },
+  },
+
 ]

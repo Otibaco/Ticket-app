@@ -7,6 +7,15 @@ import { ArrowLeft, X } from "lucide-react"
 import { celebrities } from "@/lib/celebrities"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Orbitron } from "next/font/google";
+
+
+const orbitron = Orbitron({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700", "800", "900"],
+    variable: "--font-orbitron",
+    display: "swap",
+});
 
 interface PageProps {
     params: Promise<{ slug: string }>
@@ -55,7 +64,7 @@ export default function TicketsPage({ params }: PageProps) {
     }
 
     return (
-        <div className="orbitron-page min-h-screen bg-black text-white">
+        <div className={`orbitron-page ${orbitron.variable} min-h-screen bg-black text-white`}>
             {/* Header */}
             <header className="bg-black border-b border-cyan-500/30 py-4">
                 <div className="container mx-auto px-4">
