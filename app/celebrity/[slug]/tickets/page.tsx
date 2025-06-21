@@ -68,21 +68,34 @@ export default function TicketsPage({ params }: PageProps) {
             {/* Header */}
             <header className="bg-black border-b border-cyan-500/30 py-4">
                 <div className="container mx-auto px-4">
-                    <div className="flex items-center justify-between">
-                        <Link
-                            href={`/celebrity/${celebrity.slug}`}
-                            className="flex items-center space-x-2 text-white hover:text-cyan-400 transition-colors"
-                        >
-                            <ArrowLeft className="w-5 h-5" />
-                            <span>Back to Profile</span>
-                        </Link>
-                        <div className="text-center">
-                            <h1 className="text-xl md:text-2xl font-bold text-cyan-400">{celebrity.name} Tour & Private Booking</h1>
-                            <p className="text-sm text-gray-400">Join the legend. Be part of the experience.</p>
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-y-4">
+                        {/* Back to Profile */}
+                        <div className="flex justify-start">
+                            <Link
+                                href={`/celebrity/${celebrity.slug}`}
+                                className="flex items-center space-x-2 text-white hover:text-cyan-400 transition-colors"
+                            >
+                                <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+                                <span className="text-sm sm:text-base font-medium">Profile</span>
+                            </Link>
                         </div>
+
+                        {/* Title Section */}
+                        <div className="flex-1 text-center px-2">
+                            <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-cyan-400 leading-tight">
+                                {celebrity.name} Tour & Private Booking
+                            </h1>
+                            <p className="text-xs sm:text-sm md:text-base text-gray-400 mt-1">
+                                Join the legend. Be part of the experience.
+                            </p>
+                        </div>
+
+                        {/* Spacer (keeps layout balanced in larger screens) */}
+                        <div className="hidden sm:block w-[120px]" />
                     </div>
                 </div>
             </header>
+
 
             <main className="container mx-auto px-4 py-8 max-w-6xl">
                 {/* Tour Tickets Section */}

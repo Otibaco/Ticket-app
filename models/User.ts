@@ -44,10 +44,6 @@ const UserSchema: Schema<IUser> = new Schema(
       minlength: [6, "Password must be at least 6 characters"],
       select: false, // Hide by default when querying
     },
-    profilePicture: {
-      type: String,
-      default: null,
-    },
     joinDate: {
       type: Date,
       default: null,
@@ -59,7 +55,7 @@ const UserSchema: Schema<IUser> = new Schema(
     role: {
       type: String,
       enum: ["user", "admin"], // 🔥 limited to only what you're using
-      default: "user",
+      default: "admin",
     },
     status: {
       type: String,

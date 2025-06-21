@@ -113,7 +113,7 @@ export const authOptions: AuthOptions = {
     // Redirect user after login based on role
     async redirect({ url, baseUrl, token }: { url: string; baseUrl: string; token?: JWT }) {
       if (token?.role === "admin") return "/admin";
-      if (token?.role === "user") return "/celebrity";
+      // if (token?.role === "user") return "/celebrity";
       return baseUrl;
     },
   },

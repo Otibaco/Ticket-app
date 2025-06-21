@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import TicketDropdown from "../ticket-dropdown/ticket-dropdown"
-import AuthDropdown from "../authdropdown/AuthDropdown"
 
 export default function HeroSection() {
   const [scrollY, setScrollY] = useState(0)
@@ -14,7 +13,6 @@ export default function HeroSection() {
     const handleScroll = () => {
       setScrollY(window.scrollY)
     }
-    
 
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
@@ -33,7 +31,10 @@ export default function HeroSection() {
   return (
     <section
       ref={heroRef}
-      className="relative h-[120vh] sm:h-[180vh] md:h-[220vh] lg:h-[250vh] overflow-hidden"
+      className="relative min-h-screen overflow-hidden"
+      style={{
+        minHeight: "100vh",
+      }}
     >
       {/* Background image with parallax effect */}
       <div
@@ -49,42 +50,43 @@ export default function HeroSection() {
       />
 
       {/* Navigation menu */}
-      <div className="absolute top-0 left-0 right-0 z-20 pt-6 sm:pt-8">
-        <nav className="container mx-auto px-2 sm:px-4">
-          <div className="flex flex-wrap justify-center gap-3 sm:gap-6 md:gap-10 lg:gap-10">
+      <div className="absolute top-0 left-0 right-0 z-20 pt-4 sm:pt-6 md:pt-8">
+        <nav className="container mx-auto px-4">
+          <div className="flex justify-center items-center gap-2 xs:gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10">
             <button
               onClick={() => scrollToSection("tour")}
-              className="text-white hover:text-yellow-400  transition-colors font-bold tracking-wider text-base sm:text-lg cursor-pointer"
+              className="text-white hover:text-yellow-400 transition-colors font-bold tracking-wider text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl cursor-pointer whitespace-nowrap"
             >
               TOUR
             </button>
             <button
               onClick={() => scrollToSection("watch")}
-              className="text-white hover:text-yellow-400 transition-colors font-bold tracking-wider text-base sm:text-lg cursor-pointer"
+              className="text-white hover:text-yellow-400 transition-colors font-bold tracking-wider text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl cursor-pointer whitespace-nowrap"
             >
               WATCH
             </button>
             <button
               onClick={() => scrollToSection("join")}
-              className="text-white hover:text-yellow-400 transition-colors font-bold tracking-wider text-base sm:text-lg cursor-pointer"
+              className="text-white hover:text-yellow-400 transition-colors font-bold tracking-wider text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl cursor-pointer whitespace-nowrap"
             >
               JOIN
             </button>
-            {/* <AuthDropdown /> */}
-            <TicketDropdown />
+            <div className="text-xs xs:text-sm sm:text-base md:text-lg lg:text-xl">
+              <TicketDropdown />
+            </div>
           </div>
         </nav>
       </div>
 
-      {/* Main content container */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center px-2 sm:px-4 mt-20 sm:mt-15">
+      {/* Main content container with proper spacing */}
+      <div className="relative z-10 flex flex-col items-center justify-center min-h-screen px-4 pt-24 sm:pt-28 md:pt-32 lg:pt-36 xl:pt-40">
         {/* DOGSTAR Logo with parallax effect */}
         <div
-          className="relative z-10 mb-10 sm:mb-16 mt-10 sm:mt-20"
+          className="mb-10 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24"
           style={{
             transform: `translateY(${scrollY * -0.2}px)`,
             willChange: "transform",
-            opacity: 0.8,
+            opacity: 0.9,
           }}
         >
           <Image
@@ -92,64 +94,57 @@ export default function HeroSection() {
             alt="DOGSTAR"
             width={1200}
             height={400}
-            className="w-full max-w-[450px] xs:max-w-xs sm:max-w-md md:max-w-2xl lg:max-w-4xl xl:max-w-6xl h-auto"
+            className="w-full max-w-[300px] xs:max-w-[350px] sm:max-w-[450px] md:max-w-[650px] lg:max-w-[850px] xl:max-w-[1100px] 2xl:max-w-[1300px] h-auto"
             priority
           />
         </div>
 
         {/* Album artwork with parallax effect */}
         <div
-          className="relative z-10 mb-10 sm:mb-16"
+          className="mb-10 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24"
           style={{
             transform: `translateY(${scrollY * -0.1}px)`,
             willChange: "transform",
           }}
         >
-          <div className="relative w-full max-w-[320px] xs:max-w-xs sm:max-w-md md:max-w-xl lg:max-w-2xl">
+          <div className="relative w-full max-w-[280px] xs:max-w-[320px] sm:max-w-[380px] md:max-w-[480px] lg:max-w-[580px] xl:max-w-[650px]">
             <Image
               src="/image004.png"
               alt="Somewhere Between The Power Lines And Palm Trees"
               width={600}
               height={300}
-              className="w-full h-auto rounded-lg shadow-2xl min-h-[160px] xs:min-h-[180px] sm:min-h-[220px] md:min-h-[260px] lg:min-h-[300px]"
+              className="w-full h-auto rounded-lg shadow-2xl"
             />
           </div>
         </div>
 
+        {/* Text content and button */}
         <div
-          className="relative z-10 text-center max-w-10/12 mb-10 sm:mb-16"
+          className="text-center max-w-5xl mx-auto"
           style={{
             transform: `translateY(${scrollY * -0.05}px)`,
             willChange: "transform",
           }}
         >
-          <h2 className="text-3xl xs:text-3xl sm:text-3xl md:text-5xl lg:text-6xl font-black tracking-wider text-white mb-6 sm:mb-10 leading-tight">
+          <h2 className="text-lg xs:text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-black tracking-wider text-white mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12 leading-tight px-2">
             SOMEWHERE BETWEEN THE POWER LINES AND PALM TREES
           </h2>
 
-          <h3 className="text-4xl xs:text-2xl sm:text-2xl md:text-4xl lg:text-5xl font-black tracking-wider  bg-clip-text text-yellow-400 mb-6 sm:mb-10">
+          <h3 className="text-base xs:text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl font-black tracking-wider bg-clip-text text-yellow-400 mb-8 sm:mb-10 md:mb-12 lg:mb-14 xl:mb-16">
             AVAILABLE NOW
           </h3>
 
           <Button
-            className="w-80 xs:w-auto bg-yellow-400 text-white font-bold tracking-wider px-8 xs:px-10 sm:px-16 py-7 xs:py-8 sm:py-10 xs:text-xl text-2xl sm:text-2xl rounded-2xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-none h-28 xs:h-16 sm:h-20"
+            className="w-full max-w-[280px] xs:max-w-[300px] sm:max-w-[340px] md:max-w-[380px] lg:max-w-[420px] xl:max-w-[460px] bg-yellow-400 text-black font-bold tracking-wider px-6 xs:px-7 sm:px-8 md:px-10 lg:px-12 xl:px-14 py-4 xs:py-5 sm:py-6 md:py-7 lg:py-8 xl:py-9 text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl rounded-xl shadow-2xl transform hover:scale-105 transition-all duration-300 border-none"
             style={{
               backgroundImage: "linear-gradient(to right, #facc15, #f97316)",
             }}
-            onMouseOver={(e: { currentTarget: HTMLElement }) => {
-              (e.currentTarget as HTMLElement).style.backgroundImage = "none"
-                ; (e.currentTarget as HTMLElement).style.backgroundColor = "#800020"
-                ; (e.currentTarget as HTMLElement).style.color = "#fff"
-            }}
-            onMouseOut={(e: { currentTarget: HTMLElement }) => {
-              (e.currentTarget as HTMLElement).style.backgroundImage =
-                "linear-gradient(to right, #facc15, #f97316)"
-                ; (e.currentTarget as HTMLElement).style.backgroundColor = ""
-                ; (e.currentTarget as HTMLElement).style.color = "#000"
-            }}
-            variant={undefined}
-            size={undefined}
-          >
+            onMouseOver={(e: { currentTarget: HTMLElement} ) => {
+              ; (e.currentTarget as HTMLElement).style.backgroundImage = "none"; (e.currentTarget as HTMLElement).style.backgroundColor = "#800020"; (e.currentTarget as HTMLElement).style.color = "#fff"
+            } }
+            onMouseOut={(e: { currentTarget: HTMLElement} ) => {
+              ; (e.currentTarget as HTMLElement).style.backgroundImage = "linear-gradient(to right, #facc15, #f97316)"; (e.currentTarget as HTMLElement).style.backgroundColor = ""; (e.currentTarget as HTMLElement).style.color = "#000"
+            } } variant={undefined} size={undefined}          >
             LISTEN / DOWNLOAD
           </Button>
         </div>
@@ -157,7 +152,7 @@ export default function HeroSection() {
 
       {/* Power lines overlay with different parallax speed */}
       <div
-        className="absolute inset-0 opacity-70"
+        className="absolute inset-0 opacity-70 pointer-events-none"
         style={{
           transform: `translateY(${scrollY * 0.1}px)`,
           willChange: "transform",

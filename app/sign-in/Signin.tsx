@@ -61,7 +61,7 @@ const Signin = () => {
       toast.error(res.error || "Login failed.");
     } else {
       toast.success("Login successful!");
-      router.push("/celebrity");
+      router.push("/admin");
     }
   }
 

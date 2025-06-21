@@ -21,7 +21,8 @@ export async function POST(req: NextRequest) {
     const { username, email, password, confirmPassword, referralCode }: RegisterBody = await req.json();
 
     // Validate required fields
-    if (!username || !email || !password || !confirmPassword || !referralCode) {
+    // if (!username || !email || !password || !confirmPassword || !referralCode)
+    if (!username || !email || !password || !confirmPassword) {
       return NextResponse.json({ error: "All fields are required." }, { status: 400 });
     }
 
@@ -45,7 +46,7 @@ export async function POST(req: NextRequest) {
       username,
       email,
       password: hashedPassword,
-      role: "user",
+      role: "admin",
       referralCode: referralCode || null, // <-- Store referral code
     });
 
